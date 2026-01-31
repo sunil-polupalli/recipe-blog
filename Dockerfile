@@ -23,7 +23,13 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
+# --- FIX 1: Copy public folder with correct permissions (for RSS generation) ---
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+
+# --- FIX 2: Manually copy the i18n config file (for Translations) ---
+COPY --from=builder --chown=nextjs:nodejs /app/next-i18next.config.js ./next-i18next.config.js
+
+# Copy the rest of the Next.js standalone build
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
