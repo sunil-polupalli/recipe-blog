@@ -1,7 +1,22 @@
 {
-  "search_placeholder": "Rechercher des recettes...",
+  "app_title": "Culinaire",
+  "hero_title": "Maîtrisez l'Art de la Cuisine",
+  "hero_subtitle": "Découvrez notre collection de recettes, des dîners rapides aux projets gastronomiques.",
+  "latest_recipes": "Dernières Recettes",
+  "no_recipes": "Aucune recette trouvée.",
+  "back_to_home": "Retour à l'accueil",
   "ingredients": "Ingrédients",
   "instructions": "Instructions",
-  "latest_recipes": "Dernières Recettes",
-  "read_more": "Lire la suite"
+  "share_recipe": "Partager la recette",
+  "subscribe_title": "Abonnez-vous à notre newsletter",
+  "subscribe_placeholder": "Entrez votre email",
+  "subscribe_btn": "Rejoindre",
+  "subscribe_success": "Abonné avec succès !",
+  "subscribe_error": "Veuillez entrer un email valide.",
+  "recipes_available": "recettes disponibles",
+  "view_recipe": "Voir la recette",
+  "mins": "min",
+  "search_placeholder": "Rechercher des recettes...",
+  "all_categories": "Toutes les catégories",
+  "page_title_all_recipes": "Toutes les Recettes"
 }

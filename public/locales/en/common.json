@@ -1,7 +1,22 @@
 {
-  "search_placeholder": "Search recipes...",
+  "app_title": "Culinary",
+  "hero_title": "Master the Art of Cooking",
+  "hero_subtitle": "Explore our curated collection of recipes, from quick weeknight dinners to gourmet weekend projects.",
+  "latest_recipes": "Latest Recipes",
+  "no_recipes": "No recipes found.",
+  "back_to_home": "Back to Home",
   "ingredients": "Ingredients",
   "instructions": "Instructions",
-  "latest_recipes": "Latest Recipes",
-  "read_more": "Read More"
+  "share_recipe": "Share Recipe",
+  "subscribe_title": "Subscribe to our Newsletter",
+  "subscribe_placeholder": "Enter your email",
+  "subscribe_btn": "Join",
+  "subscribe_success": "Subscribed successfully!",
+  "subscribe_error": "Please enter a valid email.",
+  "recipes_available": "recipes available",
+  "view_recipe": "View Recipe",
+  "mins": "mins",
+  "search_placeholder": "Search recipes...",
+  "all_categories": "All Categories",
+  "page_title_all_recipes": "All Recipes"
 }

@@ -1,7 +1,22 @@
 {
-  "search_placeholder": "Buscar recetas...",
+  "app_title": "Culinario",
+  "hero_title": "Domina el Arte de Cocinar",
+  "hero_subtitle": "Explora nuestra colección de recetas, desde cenas rápidas hasta proyectos gourmet.",
+  "latest_recipes": "Últimas Recetas",
+  "no_recipes": "No se encontraron recetas.",
+  "back_to_home": "Volver al Inicio",
   "ingredients": "Ingredientes",
   "instructions": "Instrucciones",
-  "latest_recipes": "Últimas Recetas",
-  "read_more": "Leer Más"
+  "share_recipe": "Compartir Receta",
+  "subscribe_title": "Suscríbete al Boletín",
+  "subscribe_placeholder": "Ingresa tu email",
+  "subscribe_btn": "Unirse",
+  "subscribe_success": "¡Suscrito con éxito!",
+  "subscribe_error": "Ingresa un email válido.",
+  "recipes_available": "recetas disponibles",
+  "view_recipe": "Ver Receta",
+  "mins": "min",
+  "search_placeholder": "Buscar recetas...",
+  "all_categories": "Todas las Categorías",
+  "page_title_all_recipes": "Todas las Recetas"
 }

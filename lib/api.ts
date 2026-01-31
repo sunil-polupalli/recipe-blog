@@ -2,16 +2,12 @@ import axios from 'axios';
 
 const SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
-
 const GRAPHQL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}`;
 
-// Helper: Fix locale mismatch
-// We map 'en' -> 'en-US' because that is your default.
-// We map 'es' -> 'es' (NOT es-US) because that is what your logs say you have.
 const fixLocale = (locale: string) => {
-  if (locale === 'en') return 'en-US'; 
-  if (locale === 'es') return 'es'; // <--- CHANGED THIS back to 'es'
-  if (locale === 'fr') return 'fr';
+  if (locale === 'en') return 'en-US'; // Default often needs en-US
+  if (locale === 'es') return 'es';    // CONFIRMED by your debug log
+  if (locale === 'fr') return 'fr';    // CONFIRMED by your debug log
   return locale;
 };
 
@@ -27,11 +23,6 @@ const fetchGraphQL = async (query: string, variables = {}) => {
         },
       }
     );
-
-    if (response.data.errors) {
-        console.error("❌ CONTENTFUL API ERROR:", JSON.stringify(response.data.errors, null, 2));
-    }
-
     return response.data;
   } catch (error) {
     console.error('Error connecting to Contentful:', error);
