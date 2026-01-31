@@ -4,7 +4,7 @@
         <title>Recipe Blog</title>
         <link>http://localhost:3000</link>
         <description>Delicious recipes from around the world</description>
-        <lastBuildDate>Sat, 31 Jan 2026 04:03:51 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 31 Jan 2026 04:17:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Next.js using Feed for Node.js</generator>
         <language>en</language>
@@ -13,7 +13,7 @@
             <title><![CDATA[Pasta]]></title>
             <link>http://localhost:3000/recipes/pasta</link>
             <guid isPermaLink="false">http://localhost:3000/recipes/pasta</guid>
-            <pubDate>Sat, 31 Jan 2026 04:03:51 GMT</pubDate>
+            <pubDate>Sat, 31 Jan 2026 04:17:30 GMT</pubDate>
             <description><![CDATA[Check out this delicious recipe for Pasta!]]></description>
         </item>
     </channel>
