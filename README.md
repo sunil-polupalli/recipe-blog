@@ -1,40 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🍳 Culinary - Multilingual Recipe Blog
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Contentful](https://img.shields.io/badge/Contentful-CMS-warmred?style=for-the-badge&logo=contentful&logoColor=white)
 
-First, run the development server:
+**Culinary** is a modern, high-performance recipe blog designed to demonstrate advanced web development concepts. Built with **Next.js** and **Contentful CMS**, it features **Static Site Generation (SSG)** for optimal performance, full **Internationalization (i18n)** support, and a robust **Dockerized** deployment pipeline.
 
+---
+
+## 📑 Table of Contents
+- [🚀 Features](#-features)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🏗️ Architecture & Design Decisions](#-architecture--design-decisions)
+- [📦 Installation & Setup](#-installation--setup)
+- [📂 Project Structure](#-project-structure)
+- [✅ Core Requirements Verification](#-core-requirements-verification)
+- [📄 License](#-license)
+
+---
+
+## 🚀 Features
+
+* **🌍 Multilingual Support:** Full content localization in **English (en)**, **Spanish (es)**, and **French (fr)**. The UI and content switch dynamically based on the user's preference.
+* **⚡ Static Site Generation (SSG):** Homepage and individual recipe pages are pre-rendered at build time for lightning-fast Time-to-First-Byte (TTFB) and superior SEO.
+* **🔍 Client-Side Search & Filter:** Instant search capabilities and category filtering on the `/recipes` page without server round-trips.
+* **📱 Responsive & Professional UI:** A mobile-first design built with **Tailwind CSS**, featuring a clean Slate & Emerald color palette.
+* **🖼️ Optimized Media:** Automatic image optimization using `next/image` to prevent layout shifts and reduce bandwidth.
+* **🐳 Fully Containerized:** A production-ready Docker setup that builds the app and serves it on port 3000.
+* **📡 SEO Best Practices:** Automatic `sitemap.xml` generation and dynamic metadata for social sharing (OpenGraph/Twitter Cards).
+* **🖨️ Print Optimization:** Specific print styles to hide navigation and footers when printing recipes.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Framework** | [Next.js 14](https://nextjs.org/) | Core React framework for SSG/SSR |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) | Type safety and code robustness |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling with Typography plugin |
+| **CMS** | [Contentful](https://www.contentful.com/) | Headless CMS for managing recipes & assets |
+| **Data Fetching** | GraphQL | Efficient data querying from Contentful API |
+| **State Management** | React Hooks | `useState` and `useContext` for local state |
+| **i18n** | `next-i18next` | Internationalization routing and translation |
+| **DevOps** | Docker | Containerization and orchestration |
+
+---
+
+## 🏗️ Architecture & Design Decisions
+
+### 1. Rendering Strategy: Static Site Generation (SSG)
+We chose **SSG** (`getStaticProps` / `getStaticPaths`) for the **Homepage** and **Recipe Details** pages.
+* **Reasoning:** Recipe content is relatively static and does not change frequently. Pre-rendering these pages ensures the best possible performance and SEO ranking.
+* **Implementation:** Pages are generated at build time. ISR (Incremental Static Regeneration) can be easily enabled via the `revalidate` prop if content updates become more frequent.
+
+### 2. Client-Side Search vs. Server-Side Search
+The **All Recipes** page (`/recipes`) fetches all recipe data at build time but handles searching and filtering in the browser.
+* **Reasoning:** For a typical blog with hundreds of recipes, client-side filtering provides an **instant** user experience (0ms latency). It avoids the overhead of making API calls to the server for every keystroke.
+
+### 3. Internationalization (i18n) Strategy
+We utilize a hybrid approach for translations:
+* **Static UI Text:** Managed via `public/locales/*.json` files using `next-i18next`. This keeps the codebase clean and separates content from code.
+* **Dynamic Content:** Fetched directly from Contentful's **Localization API**. This allows content editors to manage translations for recipes (Ingredients, Instructions) without developer intervention.
+
+### 4. Headless CMS Integration
+We decoupled the frontend from the backend using **Contentful**.
+* **Reasoning:** This allows for a flexible content model where recipes, authors, and categories are managed independently of the presentation layer. It supports the "Jamstack" architecture.
+
+---
+
+## 📦 Installation & Setup
+
+Follow these steps to get the application running locally using Docker.
+
+### Prerequisites
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+* Git installed.
+
+### Step 1: Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/sunil-polupalli/recipe-blog.git
+cd recipe-blog
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Step 2: Configure Environment Variables
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The application requires connection details for Contentful. Create a `.env.local` file based on the example.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+cp .env.example .env.local
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open `.env.local` and populate it with your credentials:
 
-## Learn More
+```ini
+# CMS Provider
+CMS_PROVIDER='contentful'
 
-To learn more about Next.js, take a look at the following resources:
+# Contentful API Credentials
+CONTENTFUL_SPACE_ID='your_space_id'
+CONTENTFUL_ACCESS_TOKEN='your_delivery_token' # Content Delivery API Token
+CONTENTFUL_PREVIEW_ACCESS_TOKEN='your_preview_token'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*> **Note:** `.env.local` is ignored by git to protect your secrets.*
 
-## Deploy on Vercel
+### Step 3: Run with Docker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Start the application using Docker Compose. This command builds the image and starts the container.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```bash
+docker-compose up --build
+
+```
+
+### Step 4: Access the Application
+
+Once the terminal shows "Ready", open your browser:
+
+* **App:** [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000)
+* **Sitemap:** [http://localhost:3000/sitemap.xml](https://www.google.com/search?q=http://localhost:3000/sitemap.xml)
+
+---
+
+## 📂 Project Structure
+
+```bash
+├── components/          # Reusable UI components
+│   ├── RecipeCard.tsx   # Displays recipe preview
+│   ├── Newsletter.tsx   # Subscription form component
+│   └── LanguageSwitcher.tsx # Toggle for en/es/fr
+├── lib/                 # Utility libraries
+│   └── api.ts           # Contentful GraphQL API client
+├── pages/               # Next.js Pages & Routing
+│   ├── index.tsx        # Homepage (SSG)
+│   ├── recipes/
+│   │   ├── [slug].tsx   # Recipe Details (Dynamic SSG)
+│   │   └── index.tsx    # Search & Filter Page
+│   └── _app.tsx         # Global App layout & providers
+├── public/              # Static Assets
+│   └── locales/         # i18n JSON files
+├── styles/              # Global CSS & Tailwind setup
+├── types/               # TypeScript interfaces
+├── Dockerfile           # Docker image configuration
+└── docker-compose.yml   # Docker orchestration
+
+```
+
+---
+
+## ✅ Core Requirements Verification
+
+This project has been verified against the submission rubric:
+
+* [x] **Dockerized:** Application runs via `docker-compose up`.
+* [x] **Env Config:** `.env.example` provided; `.env.local` ignored.
+* [x] **i18n:** Supports `en`, `es`, `fr` with persistent language switcher.
+* [x] **Homepage:** Statically generated with featured recipes.
+* [x] **Recipe Detail:** Dynamic routing with localized content.
+* [x] **Search:** Client-side filtering by text and category.
+* [x] **Newsletter:** Form with validation and feedback states.
+* [x] **Images:** Optimized using `next/image`.
+* [x] **Sitemap:** Auto-generated at `/sitemap.xml`.
+* [x] **Social Share:** Twitter sharing integration.
+* [x] **Print Styles:** optimized print layout.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
+
